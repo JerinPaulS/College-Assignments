@@ -57,11 +57,17 @@ void MainWindow::yaxis(float x1,float x2,float y1,float y2,QImage &image){
     line((500-x1),(500-x2),y2,y2,image);
 }
 
-void MainWindow::xaxis(float x1,float x2,float y1,float y2,QImage &image){
+void MainWindow::xaxis(float x1,float x2,float y1,float y2,QImage &image, int flag){
     line(x1,x2,(500-y1),(500-y1),image);
     line(x1,x1,(500-y1),(500-y2),image);
     line(x2,x2,(500-y1),(500-y2),image);
     line(x1,x2,(500-y2),(500-y2),image);
+    if(flag == 1){
+        image.fill(Qt::white);
+        line(250,250,0,500,image);
+        line(0,500,250,250,image);
+        yaxis(x1, x2, (500-y1), (500-y2), image);
+    }
 }
 
 void MainWindow::on_pushButton_clicked(){
@@ -165,5 +171,40 @@ void MainWindow::on_pushButton_3_clicked()
     }
     line(250,250,0,500,*image2);
     line(0,500,250,250,*image2);
-    xaxis(x1,x2,y1,y2,*image2);
+    xaxis(x1,x2,y1,y2,*image2, 0);
+}
+
+void MainWindow::on_pushButton_4_clicked()
+{
+    QImage *image2=new QImage(500,500,QImage::Format_RGB888);
+    image2->fill(Qt::white);
+    float x1, x2, y1,y2;
+    x1=ui->textEdit->toPlainText().toFloat();
+    x2=ui->textEdit_3->toPlainText().toFloat();
+    y1=ui->textEdit_2->toPlainText().toFloat();
+    y2=ui->textEdit_4->toPlainText().toFloat();
+    if(x1==x2 && y1==y2)
+    {
+        QMessageBox msg;
+        msg.setText("Plaese enter distant values!");
+        msg.exec();
+        return;
+    }
+    else if(x1<0 || x2<0 || y1<0 || y2<0)
+    {
+        QMessageBox msg;
+        msg.setText("Please enter positive numbers!");
+        msg.exec();
+        return;
+    }
+    else if(x1>=250 || x2>=250 || y1>=250 || y2>=250)
+    {
+        QMessageBox msg;
+        msg.setText("Please vales for 1st quadrant!");
+        msg.exec();
+        return;
+    }
+    line(250,250,0,500,*image2);
+    line(0,500,250,250,*image2);
+    xaxis(x1,x2,y1,y2,*image2, 1);
 }

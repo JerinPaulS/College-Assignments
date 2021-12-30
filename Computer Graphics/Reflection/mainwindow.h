@@ -18,11 +18,12 @@ public:
 private slots:
     void on_pushButton_clicked();
     void on_pushButton_2_clicked();
-    void xaxis(float x1,float x2,float y1,float y2,QImage &image);
+    void xaxis(float x1,float x2,float y1,float y2,QImage &image, int flag);
     void yaxis(float x1,float x2,float y1,float y2,QImage &image);
     void poly(float x1,float x2,float y1,float y2,QImage &image);
     void line(float x1,float x2,float y1,float y2,QImage &image);
     void on_pushButton_3_clicked();
+    void on_pushButton_4_clicked();
 
 private:
     Ui::MainWindow *ui;
