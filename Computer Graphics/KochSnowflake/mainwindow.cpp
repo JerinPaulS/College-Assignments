@@ -80,9 +80,9 @@ void MainWindow::line(float x1, float y1, float x2, float y2)
 void MainWindow::on_pushButton_clicked()
 {
     image.fill(Qt::white);
-    k_curve(100, 100, 400, 100, 5, 1);
-    k_curve(100, 400, 400, 400, 5, -1);
-    k_curve(100, 100, 100, 400, 5, 1);
-    k_curve(400, 100, 400, 400, 5, -1);
+    k_curve(100, 100, 200, 100, 5, 1);
+    k_curve(100, 400, 200, 200, 5, -1);
+    k_curve(100, 100, 100, 200, 5, 1);
+    k_curve(200, 100, 200, 200, 5, -1);
     ui->label->setPixmap(QPixmap::fromImage(image));
 }
